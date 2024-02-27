@@ -30,8 +30,8 @@ public class GenericsKbArrayApp {
                 System.out.println("Enter the statement: ");
                 String statement = kb.nextLine();
                 System.out.println("Enter the confidence score: ");
-                Double score = kb.nextDouble();
-                System.out.println("Statement for term %s has been updated.");
+                String score = kb.nextLine();
+                System.out.printf("Statement for term %s has been updated.", term);
             }
             else if (input == 3) {
                 System.out.println("Enter the term to search: ");
