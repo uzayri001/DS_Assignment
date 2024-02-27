@@ -10,12 +10,15 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class GenericsKbArrayApp {
     /**
      * @param args
      */
     public static void main(String[] args) {
+        Statements[] statementsArray = new Statements[100000];
         Scanner kb = new Scanner(System.in);
         while (true) {
             System.out.println("Choose an action from the menu:/n 1. Load a knowledge base from a file /n 2. Add a new statement to the knowledge base /n 3. Search for an item in the knowledge base by term /n 4. Search for a item in the knowledge base by term and sentence /n 5. Quit");
@@ -26,7 +29,14 @@ public class GenericsKbArrayApp {
                 String fileName = kb.nextLine();
                 try {
                     File myFile = new File(fileName);
-                    Scanner myScanner = new Scanner(myFile);  
+                    Scanner myScanner = new Scanner(myFile);
+                    int i = 0;
+                    while (myScanner.hasNextLine()) {
+                        String data = myScanner.nextLine();
+                        Statements statementsObject = new Statements(data);
+                        statementsArray[i] = statementsObject;
+                        i ++;
+                    }
                     myScanner.close();
                 }
                 catch (FileNotFoundException e) {
@@ -40,7 +50,32 @@ public class GenericsKbArrayApp {
                 String statement = kb.nextLine();
                 System.out.println("Enter the confidence score: ");
                 String score = kb.nextLine();
-                System.out.printf("Statement for term %s has been updated.", term);
+                for (Statements s : statementsArray) {
+                    if (s.getTerm().equals(term)) {
+                        if (Double.parseDouble(s.getConfidenceRating()) <= Double.parseDouble(score) ) {
+                            try {
+                                FileWriter writer = new FileWriter("GenericsKB.txt");
+                                writer.write(term + "/t" + statement + "/t" + score + "/n");
+                                writer.close();
+                            }
+                            catch (IOException e) {
+                                System.out.println("An error has occurred");
+                            }
+                            System.out.printf("Statement for term %s has been updated.", term);
+                        }
+                    }
+                    else {
+                        try {
+                            FileWriter writer = new FileWriter("GenericsKB.txt");
+                            writer.write(term + "/t" + statement + "/t" + score + "/n");
+                            writer.close();
+                        }
+                        catch (IOException e) {
+                            System.out.println("An error has occurred");
+                        }
+                        System.out.printf("Statement for term %s has been updated.", term);
+                    }
+                }
             }
             else if (input == 3) {
                 System.out.println("Enter the term to search: ");
