@@ -1,3 +1,12 @@
+/**
+ * reads in data from a file then creates Statements objects from each line
+ * Has functionality to deal with user input: read in, add a term, search by term, search by term and statement, quit
+ * @author Uzayr Ismail
+ * @version 1.0
+ * @since 26/02/2024
+ */
+
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
