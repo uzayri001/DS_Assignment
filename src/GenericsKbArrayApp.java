@@ -18,7 +18,7 @@ public class GenericsKbArrayApp {
      * @param args
      */
     public static void main(String[] args) {
-        Statements[] statementsArray = new Statements[100000];
+        Statements[] statementsArray = new Statements[50000];
         Scanner kb = new Scanner(System.in);
         while (true) {
             System.out.println("Choose an action from the menu:\n 1. Load a knowledge base from a file \n 2. Add a new statement to the knowledge base \n 3. Search for an item in the knowledge base by term \n 4. Search for a item in the knowledge base by term and sentence \n 5. Quit");
@@ -38,7 +38,6 @@ public class GenericsKbArrayApp {
                         statementsArray[i] = statementsObject;
                         i ++;
                     }
-                    System.out.println(i);
                     myScanner.close();
                 }
                 catch (FileNotFoundException e) {
@@ -79,14 +78,15 @@ public class GenericsKbArrayApp {
             else if (input == 3) {
                 System.out.println("Enter the term to search: ");
                 String term = kb.nextLine();
-                int i = 0;
-                for (Statements s : statementsArray) {
+                int foundCount = 0;
+                for (int i = 0; i < statementsArray.length; i++) {
+                    Statements  s = statementsArray[i];
                     if (s.compareTerm(term) == 1) {
-                        System.out.println("Statement found");
-                        i ++;
+                        System.out.printf("Statement found: %s (Confidence score: %s) \n", s.getSentence(), s.getConfidenceRating());
+                        foundCount ++;
                     }
-                }  
-                if (i == 0) { System.out.println("Term not found.");}      
+                }
+                if (foundCount == 0) { System.out.println("Term not found.");}      
             }
             else if (input == 4) {
                 System.out.println("Enter the term: ");
