@@ -43,6 +43,13 @@ public class Statements {
      */
     public String getConfidenceRating() {return confidenceRating;}
 
+    /**
+     * function that compares the confidence rating of two Statements objects
+     * returns -1 if rating of this is bigger than other
+     * returns 1 if rating of this is smaller than or equal to other 
+     * @param other
+     * @return int
+     */
     public int compareConfidenceRating(Statements other) {
         double otherRating = Double.parseDouble(other.getConfidenceRating());
         double thisRating = Double.parseDouble(this.getConfidenceRating());
@@ -50,6 +57,12 @@ public class Statements {
         else {return 1;}
     }
 
+    /**
+     * compares the term for two Statement objects
+     * return 1 if if it's the same, -1 if its not
+     * @param other
+     * @return int
+     */
     public int compareTerm(String other) {
         String thisTerm = this.getTerm();
         if (other.equalsIgnoreCase(thisTerm)) {
@@ -58,7 +71,11 @@ public class Statements {
         else {return -1;}
     }
 
-    public int compareSentence(String other) {
+   /**
+     * @param other
+     * @return int
+     */
+     public int compareSentence(String other) {
         String thisSentence = this.getSentence();
         if (other.equalsIgnoreCase(thisSentence)) {
             return 1;
@@ -66,6 +83,10 @@ public class Statements {
         else {return -1;}
     }
 
+    /**
+     * updates the current Statements object by changing its term,sentence and rating to that of other
+     * @param other
+     */
     public void updateStatement(Statements other) {
         this.term = other.term;
         this.confidenceRating = other.confidenceRating;

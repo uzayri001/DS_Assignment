@@ -10,8 +10,6 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
-import java.io.FileWriter;
-import java.io.IOException;
 
 public class GenericsKbArrayApp {
     /**
@@ -55,14 +53,12 @@ public class GenericsKbArrayApp {
                 Statements newStatement = new Statements(term + "\t" + statement + "\t" + score + "\n");
                 for (int i = 0; i < statementsArray.length; i++) {
                     Statements s = statementsArray[i];
-                    if (s == null) {System.out.println("Encountered null statement in statementsArray at index: " + i);}
-                    else if (newStatement == null) {System.out.println("newStatement is null");}
-                    else if (s.compareTerm(newStatement.getTerm()) == 1) {
+                    if (s.compareTerm(newStatement.getTerm()) == 1) {
                         if (s.compareConfidenceRating(newStatement) == 1) {
                             s.updateStatement(newStatement);
                         }
                     }
-                    else {
+                    /**else {
                         try {
                             FileWriter writer = new FileWriter("GenericsKB.txt");
                             writer.write(term + "\t" + statement + "\t" + score + "\n");
@@ -72,6 +68,7 @@ public class GenericsKbArrayApp {
                             System.out.println("An error has occurred");
                         }
                     }
+                    */
                 }
                 System.out.printf("Statement for term %s has been updated \n", term);
             }
