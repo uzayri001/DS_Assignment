@@ -42,5 +42,34 @@ public class Statements {
      * @return the confidence rating of the statement
      */
     public String getConfidenceRating() {return confidenceRating;}
-    
+
+    public int compareConfidenceRating(Statements other) {
+        double otherRating = Double.parseDouble(other.getConfidenceRating());
+        double thisRating = Double.parseDouble(this.getConfidenceRating());
+        if (otherRating < thisRating) {return -1;}
+        else {return 1;}
+    }
+
+    public int compareTerm(String other) {
+        String thisTerm = this.getTerm();
+        if (other.equalsIgnoreCase(thisTerm)) {
+            return 1;
+        }
+        else {return -1;}
+    }
+
+    public int compareSentence(String other) {
+        String thisSentence = this.getSentence();
+        if (other.equalsIgnoreCase(thisSentence)) {
+            return 1;
+        }
+        else {return -1;}
+    }
+
+    public String updateStatement(Statements other) {
+        this.term = other.term;
+        this.confidenceRating = other.confidenceRating;
+        this.sentence = other.confidenceRating;
+        return String.format("Statement for term %s has been updated.", term);
+    }
 }

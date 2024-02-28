@@ -50,18 +50,11 @@ public class GenericsKbArrayApp {
                 String statement = kb.nextLine();
                 System.out.println("Enter the confidence score: ");
                 String score = kb.nextLine();
+                Statements newStatement = new Statements(term + "/t" + statement + "/t" + score + "/n");
                 for (Statements s : statementsArray) {
-                    if (s.getTerm().equals(term)) {
-                        if (Double.parseDouble(s.getConfidenceRating()) <= Double.parseDouble(score) ) {
-                            try {
-                                FileWriter writer = new FileWriter("GenericsKB.txt");
-                                writer.write(term + "/t" + statement + "/t" + score + "/n");
-                                writer.close();
-                            }
-                            catch (IOException e) {
-                                System.out.println("An error has occurred");
-                            }
-                            System.out.printf("Statement for term %s has been updated.", term);
+                    if (s.compareTerm(newStatement.getTerm()) == 1) {
+                        if (s.compareConfidenceRating(newStatement) == 1) {
+                            s.updateStatement(newStatement);
                         }
                     }
                     else {
@@ -80,16 +73,33 @@ public class GenericsKbArrayApp {
             else if (input == 3) {
                 System.out.println("Enter the term to search: ");
                 String term = kb.nextLine();
-                System.out.println("Statement found");          
+                int i = 0;
+                for (Statements s : statementsArray) {
+                    if (s.compareTerm(term) == 1) {
+                        System.out.println("Statement found");
+                        i ++;
+                    }
+                }  
+                if (i == 0) { System.out.println("Term not found.");}      
             }
             else if (input == 4) {
                 System.out.println("Enter the term: ");
                 String term = kb.nextLine();
                 System.out.println("Enter the statement: ");
                 String statement = kb.nextLine();
-                System.out.println("Statement found");
+                int i = 0;
+                for (Statements s : statementsArray) {
+                    if (s.compareTerm(term) == 1) {
+                        if (s.compareSentence(statement) == 1) {
+                            System.out.printf("The statement was found and has a confidence score of %s.", s.getConfidenceRating());
+                            i ++;
+                        }
+                    }
+                }
+                if (i == 0) {System.out.println("Statement was not found.");}
             }
             else if (input == 5) {break;}
         }
+        kb.close();
     }    
 }
