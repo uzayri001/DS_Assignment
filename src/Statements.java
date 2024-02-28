@@ -19,8 +19,8 @@ public class Statements {
      */
     public Statements (String inputStatement) {
         String[] statements = inputStatement.split("\t");
+        int i = 0;
         for (String statement : statements) {
-            int i = 0;
             i ++;
             if (i == 1) { term = statement; }
             else if (i == 2) { sentence = statement; }
@@ -70,5 +70,10 @@ public class Statements {
         this.term = other.term;
         this.confidenceRating = other.confidenceRating;
         this.sentence = other.confidenceRating;
+    }
+
+    @Override
+    public String toString() {
+        return this.getTerm() + "\t" + this.getSentence() + "\t" + this.getConfidenceRating() + "\n";
     }
 }

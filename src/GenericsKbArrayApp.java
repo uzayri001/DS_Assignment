@@ -38,13 +38,13 @@ public class GenericsKbArrayApp {
                         statementsArray[i] = statementsObject;
                         i ++;
                     }
+                    System.out.println(i);
                     myScanner.close();
                 }
                 catch (FileNotFoundException e) {
                     System.out.println("File not found");
                 }
-                if (statementsArray != null) {System.out.println("Knowledge base loaded successfully.");
-            }
+                if (statementsArray != null) {System.out.println("Knowledge base loaded successfully.");}
             }
             else if (input == 2) {
                 System.out.println("Enter the term: ");
