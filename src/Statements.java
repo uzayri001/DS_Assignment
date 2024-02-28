@@ -66,10 +66,9 @@ public class Statements {
         else {return -1;}
     }
 
-    public String updateStatement(Statements other) {
+    public void updateStatement(Statements other) {
         this.term = other.term;
         this.confidenceRating = other.confidenceRating;
         this.sentence = other.confidenceRating;
-        return String.format("Statement for term %s has been updated.", term);
     }
 }

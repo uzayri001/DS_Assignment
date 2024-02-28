@@ -21,9 +21,10 @@ public class GenericsKbArrayApp {
         Statements[] statementsArray = new Statements[100000];
         Scanner kb = new Scanner(System.in);
         while (true) {
-            System.out.println("Choose an action from the menu:/n 1. Load a knowledge base from a file /n 2. Add a new statement to the knowledge base /n 3. Search for an item in the knowledge base by term /n 4. Search for a item in the knowledge base by term and sentence /n 5. Quit");
+            System.out.println("Choose an action from the menu:\n 1. Load a knowledge base from a file \n 2. Add a new statement to the knowledge base \n 3. Search for an item in the knowledge base by term \n 4. Search for a item in the knowledge base by term and sentence \n 5. Quit");
             System.out.print("Enter your choice: ");
             int input = kb.nextInt();
+            kb.nextLine();
             if (input == 1) {
                 System.out.println("Enter the file name: ");
                 String fileName = kb.nextLine();
@@ -42,6 +43,8 @@ public class GenericsKbArrayApp {
                 catch (FileNotFoundException e) {
                     System.out.println("File not found");
                 }
+                if (statementsArray != null) {System.out.println("Knowledge base loaded successfully.");
+            }
             }
             else if (input == 2) {
                 System.out.println("Enter the term: ");
@@ -50,9 +53,12 @@ public class GenericsKbArrayApp {
                 String statement = kb.nextLine();
                 System.out.println("Enter the confidence score: ");
                 String score = kb.nextLine();
-                Statements newStatement = new Statements(term + "/t" + statement + "/t" + score + "/n");
-                for (Statements s : statementsArray) {
-                    if (s.compareTerm(newStatement.getTerm()) == 1) {
+                Statements newStatement = new Statements(term + "\t" + statement + "\t" + score + "\n");
+                for (int i = 0; i < statementsArray.length; i++) {
+                    Statements s = statementsArray[i];
+                    if (s == null) {System.out.println("Encountered null statement in statementsArray at index: " + i);}
+                    else if (newStatement == null) {System.out.println("newStatement is null");}
+                    else if (s.compareTerm(newStatement.getTerm()) == 1) {
                         if (s.compareConfidenceRating(newStatement) == 1) {
                             s.updateStatement(newStatement);
                         }
@@ -60,15 +66,15 @@ public class GenericsKbArrayApp {
                     else {
                         try {
                             FileWriter writer = new FileWriter("GenericsKB.txt");
-                            writer.write(term + "/t" + statement + "/t" + score + "/n");
+                            writer.write(term + "\t" + statement + "\t" + score + "\n");
                             writer.close();
                         }
                         catch (IOException e) {
                             System.out.println("An error has occurred");
                         }
-                        System.out.printf("Statement for term %s has been updated.", term);
                     }
                 }
+                System.out.printf("Statement for term %s has been updated", term);
             }
             else if (input == 3) {
                 System.out.println("Enter the term to search: ");
