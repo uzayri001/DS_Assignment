@@ -73,7 +73,7 @@ public class GenericsKbArrayApp {
                         }
                     }
                 }
-                System.out.printf("Statement for term %s has been updated", term);
+                System.out.printf("Statement for term %s has been updated \n", term);
             }
             else if (input == 3) {
                 System.out.println("Enter the term to search: ");
