@@ -106,7 +106,7 @@ public class Statements {
             return 0;
         }
     }
-
+     
     @Override
     public String toString() {
         return this.getTerm() + "\t" + this.getSentence() + "\t" + this.getConfidenceRating() + "\n";
