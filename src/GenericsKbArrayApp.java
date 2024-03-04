@@ -53,7 +53,7 @@ public class GenericsKbArrayApp {
                 Statements newStatement = new Statements(term + "\t" + statement + "\t" + score + "\n");
                 for (int i = 0; i < statementsArray.length; i++) {
                     Statements s = statementsArray[i];
-                    if (s.compareTerm(newStatement.getTerm()) == 1) {
+                    if (s.compareTerm(newStatement.getTerm()) == 0) {
                         if (s.compareConfidenceRating(newStatement) == 1) {
                             s.updateStatement(newStatement);
                         }
@@ -78,7 +78,7 @@ public class GenericsKbArrayApp {
                 int foundCount = 0;
                 for (int i = 0; i < statementsArray.length; i++) {
                     Statements  s = statementsArray[i];
-                    if (s.compareTerm(term) == 1) {
+                    if (s.compareTerm(term) == 0) {
                         System.out.printf("Statement found: %s (Confidence score: %s) \n", s.getSentence(), s.getConfidenceRating());
                         foundCount ++;
                     }
@@ -92,7 +92,7 @@ public class GenericsKbArrayApp {
                 String statement = kb.nextLine();
                 int i = 0;
                 for (Statements s : statementsArray) {
-                    if (s.compareTerm(term) == 1) {
+                    if (s.compareTerm(term) == 0) {
                         if (s.compareSentence(statement) == 1) {
                             System.out.printf("The statement was found and has a confidence score of %s.", s.getConfidenceRating());
                             i ++;
