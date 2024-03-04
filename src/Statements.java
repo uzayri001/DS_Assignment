@@ -93,6 +93,20 @@ public class Statements {
         this.sentence = other.confidenceRating;
     }
 
+    public int sortAlphabetical(Statements other) {
+        String thisTerm = this.getTerm();
+        String otherTerm = other.getTerm();
+        if (thisTerm.charAt(0) - otherTerm.charAt(0) < 0) {
+            return -1;
+        }
+        else if (thisTerm.charAt(0) - otherTerm.charAt(0) > 0) {
+            return 1;
+        }
+        else {
+            return 0;
+        }
+    }
+
     @Override
     public String toString() {
         return this.getTerm() + "\t" + this.getSentence() + "\t" + this.getConfidenceRating() + "\n";
