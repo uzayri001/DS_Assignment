@@ -24,12 +24,24 @@ public class GenericsKbBSTApp {
                         Statements statementsObject = new Statements(data);
                         Node newNode = new Node(statementsObject);
                         binarySearchTree.insert(newNode);
+
                     }
                     myScanner.close();
                 }
                 catch (FileNotFoundException e){
                     System.out.println("File not found.");
                 }
+            
+            }
+            if (input == 3) {
+                System.out.println("Enter the term to search: ");
+                String term = kb.nextLine();
+                if (binarySearchTree.search(term) == true) {
+                    System.out.println(binarySearchTree.root.statement.toString());
+                }
+            }
+            if (input == 4) {
+                
             }
             if (input == 5) {
                 break;
