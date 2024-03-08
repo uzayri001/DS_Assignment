@@ -36,12 +36,20 @@ public class GenericsKbBSTApp {
             if (input == 3) {
                 System.out.println("Enter the term to search: ");
                 String term = kb.nextLine();
-                if (binarySearchTree.search(term) == true) {
+                if (binarySearchTree.searchByTerm(term) == true) {
                     System.out.println(binarySearchTree.root.statement.toString());
                 }
             }
             if (input == 4) {
-                
+                System.out.println("Enter the term: ");
+                String term = kb.nextLine();
+                System.out.println("Enter the statement to search for: ");
+                String statement = kb.nextLine();
+                if (binarySearchTree.searchByTerm(term) == true) {
+                    if (binarySearchTree.searchByStatement(statement) == true) {
+                        System.out.printf("The statement was found and has a confidence score of %s", binarySearchTree.root.statement.getConfidenceRating());
+                    }
+                }
             }
             if (input == 5) {
                 break;

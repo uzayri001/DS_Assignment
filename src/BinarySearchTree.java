@@ -26,17 +26,28 @@ public class BinarySearchTree {
             displayHelper(root.right);
         }
     }
-    public boolean search(String term) {
-        return searchHelper(root, term);
+    public boolean searchByTerm(String term) {
+        return searchHelperByTerm(root, term);
     }
-    private boolean searchHelper(Node root, String term) {
+    private boolean searchHelperByTerm(Node root, String term) {
         if (root == null) {return false;}
         else if (root.statement.compareTerm(term) == 0) {return true;}
-        else if (root.statement.compareTerm(term) == 1) {return searchHelper(root.left, term);}
-        else {return searchHelper(root.right, term);}
+        else if (root.statement.compareTerm(term) == 1) {return searchHelperByTerm(root.left, term);}
+        else {return searchHelperByTerm(root.right, term);}
     }
+
+    public boolean searchByStatement(String sentence) {
+        return searchHelperByStatement(root, sentence);
+    }
+    private boolean searchHelperByStatement(Node root, String sentence) {
+        if (root == null) {return false;}
+        else if (root.statement.compareSentence(sentence) == 0) {return true;}
+        else if (root.statement.compareSentence(sentence) == 1) {return searchHelperByStatement(root.left, sentence);}
+        else {return searchHelperByStatement(root.right, sentence);}
+    }
+
     public void remove(Statements statement) {
-        if (search(statement.getTerm())) {removeHelper(root, statement);}
+        if (searchByTerm(statement.getTerm())) {removeHelper(root, statement);}
         else {System.out.println(statement.toString() + " could not be found.");}
     }
     public Node removeHelper(Node root, Statements statement) {
