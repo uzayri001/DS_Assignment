@@ -31,29 +31,29 @@ public class GenericsKbBSTApp {
                 catch (FileNotFoundException e){
                     System.out.println("File not found.");
                 }
-            
             }
-            if (input == 3) {
+            else if (input == 3) {
                 System.out.println("Enter the term to search: ");
                 String term = kb.nextLine();
-                if (binarySearchTree.searchByTerm(term) == true) {
-                    System.out.println(binarySearchTree.root.statement.toString());
+                if (binarySearchTree.searchByTerm(term) != null) {
+                    Statements searchedStetement = new Statements(binarySearchTree.searchByTerm(term).statement.toString());
+                    System.out.printf("Statement found: %s. (Confidence score: %s)", searchedStetement.getSentence(), searchedStetement.getConfidenceRating());
                 }
             }
-            if (input == 4) {
+            else if (input == 4) {
                 System.out.println("Enter the term: ");
                 String term = kb.nextLine();
                 System.out.println("Enter the statement to search for: ");
                 String statement = kb.nextLine();
-                if (binarySearchTree.searchByTerm(term) == true) {
-                    if (binarySearchTree.searchByStatement(statement) == true) {
-                        System.out.printf("The statement was found and has a confidence score of %s", binarySearchTree.root.statement.getConfidenceRating());
+                if (binarySearchTree.searchByTerm(term) != null) {
+                    while (binarySearchTree.searchByStatement(statement) == false) {
+                        System.out.printf("The statement was found and has a confidence score of %s. \n", binarySearchTree.searchByTerm(term).statement.getConfidenceRating());
+                        break;
                     }
                 }
             }
-            if (input == 5) {
-                break;
-            }
+            else if (input == 5) {break;}
+            else {System.out.println("Invalid input, enter an integer 1-5");}
         }
         kb.close();
     }

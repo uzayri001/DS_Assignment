@@ -99,15 +99,8 @@ public class Statements {
     public int sortAlphabetical(Statements other) {
         String thisTerm = this.getTerm();
         String otherTerm = other.getTerm();
-        if (thisTerm.charAt(0) - otherTerm.charAt(0) < 0) {
-            return -1;
-        }
-        else if (thisTerm.charAt(0) - otherTerm.charAt(0) > 0) {
-            return 1;
-        }
-        else {
-            return 0;
-        }
+        int result = thisTerm.compareToIgnoreCase(otherTerm);
+        return result;
     }
      
     @Override
