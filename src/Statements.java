@@ -43,8 +43,14 @@ public class Statements {
      */
     public String getConfidenceRating() {return confidenceRating;}
 
+    /**
+     * @param newSentence
+     */
     public void setSentence(String newSentence) {this.sentence = newSentence;}
 
+    /**
+     * @param newRating
+     */
     public void setConfidenceRating(String newRating) {this.confidenceRating = newRating;}
 
     /**
