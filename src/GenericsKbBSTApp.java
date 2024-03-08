@@ -2,7 +2,13 @@ import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
 
-
+/**
+ * creates a BinarySearchTree Object using data from the KB text file
+ * able to search for and add terms
+ * @author Uzayr Ismail
+ * @version 1.0
+ * @since 05/03/2024a
+ */
 
 public class GenericsKbBSTApp {
     public static void main(String[] args) {

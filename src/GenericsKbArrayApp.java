@@ -16,7 +16,7 @@ public class GenericsKbArrayApp {
      * @param args
      */
     public static void main(String[] args) {
-        Statements[] statementsArray = new Statements[50000];
+        Statements[] statementsArray = new Statements[100000];
         Scanner kb = new Scanner(System.in);
         while (true) {
             System.out.println("Choose an action from the menu:\n 1. Load a knowledge base from a file \n 2. Add a new statement to the knowledge base \n 3. Search for an item in the knowledge base by term \n 4. Search for a item in the knowledge base by term and sentence \n 5. Quit");
@@ -56,6 +56,7 @@ public class GenericsKbArrayApp {
                     if (s.compareTerm(newStatement.getTerm()) == 0) {
                         if (s.compareConfidenceRating(newStatement) == 1) {
                             s.updateStatement(newStatement);
+                            break;
                         }
                     }
                     /**else {
@@ -81,6 +82,7 @@ public class GenericsKbArrayApp {
                     if (s.compareTerm(term) == 0) {
                         System.out.printf("Statement found: %s (Confidence score: %s) \n", s.getSentence(), s.getConfidenceRating());
                         foundCount ++;
+                        break;
                     }
                 }
                 if (foundCount == 0) { System.out.println("Term not found.");}      
@@ -94,8 +96,9 @@ public class GenericsKbArrayApp {
                 for (Statements s : statementsArray) {
                     if (s.compareTerm(term) == 0) {
                         if (s.compareSentence(statement) == 1) {
-                            System.out.printf("The statement was found and has a confidence score of %s.", s.getConfidenceRating());
+                            System.out.printf("The statement was found and has a confidence score of %s. \n", s.getConfidenceRating());
                             i ++;
+                            break;
                         }
                     }
                 }
