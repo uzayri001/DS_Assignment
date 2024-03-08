@@ -43,6 +43,10 @@ public class Statements {
      */
     public String getConfidenceRating() {return confidenceRating;}
 
+    public void setSentence(String newSentence) {this.sentence = newSentence;}
+
+    public void setConfidenceRating(String newRating) {this.confidenceRating = newRating;}
+
     /**
      * function that compares the confidence rating of two Statements objects
      * returns -1 if rating of this is bigger than other

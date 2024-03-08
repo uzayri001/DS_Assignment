@@ -7,7 +7,7 @@ import java.io.FileNotFoundException;
  * able to search for and add terms
  * @author Uzayr Ismail
  * @version 1.0
- * @since 05/03/2024a
+ * @since 05/03/2024
  */
 
 public class GenericsKbBSTApp {
@@ -37,6 +37,28 @@ public class GenericsKbBSTApp {
                 catch (FileNotFoundException e){
                     System.out.println("File not found.");
                 }
+                if (binarySearchTree.root != null) {System.out.println("Knowledge base loaded successfully.");}
+            }
+            else if (input == 2) {
+                System.out.println("Enter the term: ");
+                String term = kb.nextLine();
+                System.out.println("Enter the statement: ");
+                String sentence = kb.nextLine();
+                System.out.println("Enter the confidence score: ");
+                String rating = kb.nextLine();
+                if (binarySearchTree.searchByTerm(term) != null) {
+                    Double termRating = Double.parseDouble(binarySearchTree.searchByTerm(term).statement.getConfidenceRating());
+                    if (Double.parseDouble(rating) <= termRating) {
+                        binarySearchTree.searchByTerm(term).statement.setConfidenceRating(rating);
+                        binarySearchTree.searchByTerm(term).statement.setSentence(sentence);
+                    }
+                }
+                else {
+                    Statements newStatement = new Statements(term + "\t" + sentence + "\t" + rating);
+                    Node newNode = new Node(newStatement);
+                    binarySearchTree.insert(newNode);
+                }
+                System.out.printf("Statement for term %s has been updated.", term);
             }
             else if (input == 3) {
                 System.out.println("Enter the term to search: ");
